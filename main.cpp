@@ -9,7 +9,7 @@
 
 #endif
 
-#include<algorithm>
+#include <algorithm>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -38,7 +38,7 @@ struct Setting
 void simpleLog(const string& str)
 {
 	static ofstream ofs("bak.log", ios::out | ios::trunc);
-	ofs << str;
+	(ofs << str).flush();
 	return;
 }
 
@@ -65,7 +65,7 @@ void backupFile(Setting setting)
 			BOOL ret = CopyFileA(setting.Path.c_str(), newFileName, FALSE);
 			if (ret != 0)
 			{
-				simpleLog(string("copy") + " " + setting.Path + " " + newFileName);
+				simpleLog(string("copy") + " " + setting.Path + " " + newFileName + "\n");
 			}
 
 			// 以下代码防止弹出窗口，但是只能执行bat脚本
